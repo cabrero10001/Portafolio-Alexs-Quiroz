@@ -13,13 +13,20 @@ export function useTheme(): [Theme, () => void] {
   });
 
   const toggleTheme = useCallback(() => {
-    setTheme((prev) => {
-      const next = prev === 'light' ? 'dark' : 'light';
-      localStorage.setItem('theme', next);
+    const next = theme === 'light' ? 'dark' : 'light';
+
+    const applyTheme = () => {
       document.documentElement.classList.toggle('dark', next === 'dark');
-      return next;
-    });
-  }, []);
+      localStorage.setItem('theme', next);
+      setTheme(next);
+    };
+
+    if ('startViewTransition' in document) {
+      document.startViewTransition(applyTheme);
+    } else {
+      applyTheme();
+    }
+  }, [theme]);
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
