@@ -2,10 +2,10 @@ export const APP_CONSTANTS = {
   name: 'Portafolio',
   version: '1.0.0',
   author: 'Tu Nombre',
-  email: 'tu@email.com',
+  email: 'tu.email@gmail.com',
   location: 'Madrid, España',
   availability: 'Abierto a oportunidades',
-  resumeUrl: '/documents/cv.pdf',
+  resumeUrl: '/documents/CV_Alexs_Quiroz_Gonzalez.pdf',
 } as const;
 
 export const BREAKPOINTS = {
@@ -34,8 +34,8 @@ export const Z_INDEX = {
 
 export const SOCIAL_ICONS = {
   github: 'github-icon',
-  linkedin: 'discord-icon',
-  twitter: 'x-icon',
+  linkedin: 'linkedin-icon',
+  instagram: 'instagram-icon',
   email: 'social-icon',
   bluesky: 'bluesky-icon',
 } as const;
@@ -81,7 +81,7 @@ export const SECTION_IDS = {
 } as const;
 
 export const CONTACT_INFO = {
-  email: 'tu@email.com',
+  email: 'tu.email@gmail.com',
   phone: '+34 000 000 000',
   location: 'Madrid, España',
   timezone: 'CET (UTC+1)',

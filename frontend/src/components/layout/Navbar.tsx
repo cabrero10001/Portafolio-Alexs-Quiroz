@@ -3,6 +3,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { navItems } from '@/lib/metadata';
 import { socialLinks } from '@/data/social';
 import { Button } from '@/components/ui/Button';
+import { APP_CONSTANTS } from '@/lib/constants';
 
 export function Navbar() {
   const [theme, toggleTheme] = useTheme();
@@ -75,38 +76,45 @@ export function Navbar() {
               size="sm"
               onClick={toggleTheme}
               aria-label={theme === 'light' ? 'Activar modo oscuro' : 'Activar modo claro'}
+              className="relative overflow-hidden"
             >
-              {theme === 'light' ? (
-                <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                  />
-                </svg>
-              )}
+              <span
+                className={`inline-block transition-transform duration-300 ease-out ${
+                  theme === 'dark' ? 'rotate-180 scale-110' : 'rotate-0 scale-100'
+                }`}
+              >
+                {theme === 'light' ? (
+                  <svg
+                    className="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                    />
+                  </svg>
+                )}
+              </span>
             </Button>
 
             <div className="hidden md:flex items-center gap-2">
@@ -126,14 +134,13 @@ export function Navbar() {
               ))}
             </div>
 
-            <Button
-              variant="primary"
-              size="sm"
-              className="hidden md:inline-flex"
-              onClick={() => scrollToSection('#contact')}
+            <a
+              href={APP_CONSTANTS.resumeUrl}
+              download
+              className="hidden md:inline-flex items-center justify-center font-medium gap-1.5 px-3 py-1.5 text-sm rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 transition-colors"
             >
-              Contactar
-            </Button>
+              Descargar CV
+            </a>
 
             <button
               className="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
@@ -214,13 +221,13 @@ export function Navbar() {
                   </a>
                 ))}
               </div>
-              <Button
-                variant="primary"
-                className="w-full"
-                onClick={() => scrollToSection('#contact')}
+              <a
+                href={APP_CONSTANTS.resumeUrl}
+                download
+                className="w-full inline-flex items-center justify-center font-medium gap-1.5 px-3 py-1.5 text-sm rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 transition-colors"
               >
-                Contactar
-              </Button>
+                Descargar CV
+              </a>
             </div>
           </div>
         )}
