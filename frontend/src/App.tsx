@@ -2,8 +2,6 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { SocialDock } from '@/components/layout/SocialDock';
 import { Home } from '@/pages/Home';
-import { About } from '@/pages/About';
-import { Projects } from '@/pages/Projects';
 import { Contact } from '@/pages/Contact';
 
 function App() {
@@ -12,8 +10,6 @@ function App() {
       <Navbar />
       <main className="flex-1 pt-16">
         <Home />
-        <About />
-        <Projects />
         <Contact />
       </main>
       <Footer />

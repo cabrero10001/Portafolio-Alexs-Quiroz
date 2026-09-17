@@ -29,7 +29,7 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
   { label: 'Inicio', href: '#home' },
-  { label: 'Sobre mí', href: '#about' },
+  { label: 'Sobre mí', href: '#skills' },
   { label: 'Proyectos', href: '#projects' },
   { label: 'Contacto', href: '#contact' },
 ];

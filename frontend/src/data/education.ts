@@ -1,46 +1,41 @@
 export interface Education {
   id: string;
+  title: string;
   institution: string;
-  degree: string;
-  field: string;
   location: string;
-  startDate: string;
-  endDate?: string;
-  current?: boolean;
-  description?: string[];
-  grade?: string;
+  startYear: string;
+  endYear?: string;
+  status: 'En curso' | 'Titulado';
+  icon: 'education' | 'code';
+  points: string[];
 }
 
 export const education: Education[] = [
   {
     id: 'edu-1',
-    institution: 'Universidad Politécnica de Madrid',
-    degree: 'Máster Universitario',
-    field: 'Ingeniería de Software',
-    location: 'Madrid, España',
-    startDate: '2017-09',
-    endDate: '2019-06',
-    description: [
-      'Especialización en arquitectura de software y sistemas distribuidos.',
-      'Tesis: "Optimización de rendimiento en aplicaciones React a gran escala".',
-      'Proyecto final: Sistema de microfrontends con Module Federation.',
+    title: 'Ingeniería de Software',
+    institution: 'Universitaria de Colombia',
+    location: 'Bogotá, Colombia',
+    startYear: '2024',
+    status: 'En curso',
+    icon: 'education',
+    points: [
+      'Focus en arquitectura de software, desarrollo de sistemas y metodologías ágiles.',
+      'Desarrollo de proyectos de impacto institucional (sistemas de turnos y chatbots con IA).',
     ],
-    grade: 'Sobresaliente',
   },
   {
     id: 'edu-2',
-    institution: 'Universidad de Valencia',
-    degree: 'Grado',
-    field: 'Ingeniería Informática',
-    location: 'Valencia, España',
-    startDate: '2013-09',
-    endDate: '2017-06',
-    description: [
-      'Especialidad en Ingeniería del Software.',
-      'Proyecto final: Plataforma de e-learning con Node.js y AngularJS.',
-      'Erasmus: Technical University of Munich (2015-2016).',
+    title: 'Técnico en Programación de Software',
+    institution: 'Centro Educativo SENA',
+    location: 'Bogotá, Colombia',
+    startYear: '2022',
+    endYear: '2023',
+    status: 'Titulado',
+    icon: 'code',
+    points: [
+      'Fundamentos de programación, lógica de desarrollo, bases de datos y construcción de software.',
     ],
-    grade: 'Notable',
   },
 ];
 
@@ -49,36 +44,29 @@ export interface Certification {
   name: string;
   issuer: string;
   date: string;
-  expiryDate?: string;
-  credentialId?: string;
-  url?: string;
+  credentialId: string;
 }
 
 export const certifications: Certification[] = [
   {
     id: 'cert-1',
-    name: 'AWS Certified Solutions Architect - Associate',
-    issuer: 'Amazon Web Services',
-    date: '2023-03',
-    expiryDate: '2026-03',
-    credentialId: 'AWS-SAA-123456',
-    url: 'https://aws.amazon.com/certification/',
+    name: 'Manejo de herramientas Microsoft Office: Excel',
+    issuer: 'SENA / Formación Adicional',
+    date: '2016',
+    credentialId: 'EXCEL-2016',
   },
   {
     id: 'cert-2',
-    name: 'Certified Kubernetes Administrator (CKA)',
-    issuer: 'Cloud Native Computing Foundation',
-    date: '2022-11',
-    expiryDate: '2025-11',
-    credentialId: 'CKA-789012',
-    url: 'https://www.cncf.io/certification/cka/',
+    name: 'Manejo de herramientas Microsoft Office: PowerPoint',
+    issuer: 'SENA / Formación Adicional',
+    date: '2010',
+    credentialId: 'PPT-2010',
   },
   {
     id: 'cert-3',
-    name: 'Professional Scrum Master I (PSM I)',
-    issuer: 'Scrum.org',
-    date: '2021-06',
-    credentialId: 'PSM-345678',
-    url: 'https://www.scrum.org/professional-scrum-master-certification',
+    name: 'Inglés B2 - Medio Avanzado',
+    issuer: 'Español (Nativo) | Inglés (B2)',
+    date: 'Competencia Profesional',
+    credentialId: 'LANG-B2',
   },
 ];

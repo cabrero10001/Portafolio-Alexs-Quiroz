@@ -24,4 +24,10 @@ export const socialLinks: SocialLink[] = [
     icon: 'instagram-icon',
     ariaLabel: 'Instagram',
   },
+  {
+    name: 'WhatsApp',
+    href: 'https://wa.me/573023208680',
+    icon: 'whatsapp-icon',
+    ariaLabel: 'WhatsApp',
+  },
 ];
