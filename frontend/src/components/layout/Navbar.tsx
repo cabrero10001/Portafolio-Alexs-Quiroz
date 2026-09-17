@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from '@/hooks/useTheme';
 import { navItems } from '@/lib/metadata';
-import { socialLinks } from '@/data/social';
 import { Button } from '@/components/ui/Button';
+import { APP_CONSTANTS } from '@/lib/constants';
 
 export function Navbar() {
   const [theme, toggleTheme] = useTheme();
@@ -27,112 +27,91 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm border-b border-gray-200/50 dark:border-gray-700/50'
-          : 'bg-transparent'
-      }`}
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 max-w-[95vw]"
       role="navigation"
       aria-label="Navegación principal"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center gap-8">
+      <div
+        className={`transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-md ${
+          mobileMenuOpen ? 'rounded-3xl' : 'rounded-full'
+        } ${
+          scrolled
+            ? 'bg-white/90 dark:bg-gray-900/90 shadow-lg'
+            : 'bg-white/70 dark:bg-gray-900/70 shadow-sm'
+        }`}
+      >
+        <div className="flex min-h-14 items-center justify-between gap-4 px-5.5 py-2">
+          <nav className="hidden md:flex items-center gap-4">
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                onClick={(e) => {
+                  if (!item.external) {
+                    e.preventDefault();
+                    scrollToSection(item.href);
+                  }
+                }}
+                className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3">
             <a
-              href="#home"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection('#home');
-              }}
-              className="text-xl font-bold text-gray-900 dark:text-white hover:opacity-80 transition-opacity"
-              aria-label="Ir al inicio"
+              href={APP_CONSTANTS.resumeUrl}
+              download
+              className="hidden md:inline-flex items-center justify-center font-medium gap-1.5 px-3 py-1.5 text-sm rounded-full bg-indigo-600 text-white hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 transition-colors"
             >
-              Portafolio
+              Descargar CV
             </a>
 
-            <div className="hidden md:flex items-center gap-6">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={(e) => {
-                    if (!item.external) {
-                      e.preventDefault();
-                      scrollToSection(item.href);
-                    }
-                  }}
-                  className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4">
             <Button
               variant="ghost"
               size="sm"
               onClick={toggleTheme}
               aria-label={theme === 'light' ? 'Activar modo oscuro' : 'Activar modo claro'}
+              className="relative overflow-hidden"
             >
-              {theme === 'light' ? (
-                <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                  />
-                </svg>
-              )}
-            </Button>
-
-            <div className="hidden md:flex items-center gap-2">
-              {socialLinks.slice(0, 3).map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target={social.href.startsWith('http') ? '_blank' : undefined}
-                  rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  aria-label={social.ariaLabel}
-                  className="text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-                >
-                  <svg className="h-5 w-5" aria-hidden="true">
-                    <use href={`/icons.svg#${social.icon}`} />
+              <span
+                className={`inline-block transition-transform duration-300 ease-out ${
+                  theme === 'dark' ? 'rotate-180 scale-110' : 'rotate-0 scale-100'
+                }`}
+              >
+                {theme === 'light' ? (
+                  <svg
+                    className="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                    />
                   </svg>
-                </a>
-              ))}
-            </div>
-
-            <Button
-              variant="primary"
-              size="sm"
-              className="hidden md:inline-flex"
-              onClick={() => scrollToSection('#contact')}
-            >
-              Contactar
+                ) : (
+                  <svg
+                    className="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                    />
+                  </svg>
+                )}
+              </span>
             </Button>
 
             <button
@@ -180,9 +159,9 @@ export function Navbar() {
         {mobileMenuOpen && (
           <div
             id="mobile-menu"
-            className="md:hidden py-4 border-t border-gray-200 dark:border-gray-700"
+            className="md:hidden px-4 pb-4 border-t border-gray-200 dark:border-gray-700"
           >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 pt-4">
               {navItems.map((item) => (
                 <a
                   key={item.label}
@@ -198,29 +177,13 @@ export function Navbar() {
                   {item.label}
                 </a>
               ))}
-              <div className="pt-4 flex items-center gap-4">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    target={social.href.startsWith('http') ? '_blank' : undefined}
-                    rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    aria-label={social.ariaLabel}
-                    className="text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-                  >
-                    <svg className="h-5 w-5" aria-hidden="true">
-                      <use href={`/icons.svg#${social.icon}`} />
-                    </svg>
-                  </a>
-                ))}
-              </div>
-              <Button
-                variant="primary"
-                className="w-full"
-                onClick={() => scrollToSection('#contact')}
+              <a
+                href={APP_CONSTANTS.resumeUrl}
+                download
+                className="w-full inline-flex items-center justify-center font-medium gap-1.5 px-3 py-1.5 text-sm rounded-full bg-indigo-600 text-white hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 transition-colors"
               >
-                Contactar
-              </Button>
+                Descargar CV
+              </a>
             </div>
           </div>
         )}

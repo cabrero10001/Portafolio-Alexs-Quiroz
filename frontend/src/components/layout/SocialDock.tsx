@@ -32,7 +32,7 @@ export function SocialDock() {
           <svg className="h-6 w-6" aria-hidden="true">
             <use href={`/icons.svg#${social.icon}`} />
           </svg>
-          <span className="absolute right-full mr-3 px-2 py-1 text-xs font-medium text-white bg-gray-900 dark:bg-gray-100 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+          <span className="absolute right-full mr-3 px-2.5 py-1 rounded-md text-xs font-medium text-white bg-slate-900 dark:bg-slate-800 dark:text-slate-100 border border-slate-700/50 shadow-md opacity-0 group-hover:opacity-100 transition-all duration-200 ease-in-out whitespace-nowrap pointer-events-none">
             {social.name}
           </span>
         </a>

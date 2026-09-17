@@ -1,63 +1,78 @@
-export interface Skill {
+export interface SkillItem {
   name: string;
-  category: 'frontend' | 'backend' | 'devops' | 'tools' | 'languages' | 'databases';
-  level?: 'beginner' | 'intermediate' | 'advanced' | 'expert';
-  icon?: string;
+  level: 'expert' | 'advanced' | 'intermediate';
 }
 
-export const skills: Skill[] = [
-  // Frontend
-  { name: 'React', category: 'frontend', level: 'expert' },
-  { name: 'TypeScript', category: 'frontend', level: 'expert' },
-  { name: 'Next.js', category: 'frontend', level: 'advanced' },
-  { name: 'Tailwind CSS', category: 'frontend', level: 'advanced' },
-  { name: 'HTML5', category: 'frontend', level: 'expert' },
-  { name: 'CSS3', category: 'frontend', level: 'expert' },
-  { name: 'JavaScript (ES6+)', category: 'frontend', level: 'expert' },
-  { name: 'Vue.js', category: 'frontend', level: 'intermediate' },
-  { name: 'Vite', category: 'frontend', level: 'advanced' },
-  { name: 'Redux / Zustand', category: 'frontend', level: 'advanced' },
+export interface SkillCategory {
+  key: string;
+  title: string;
+  icon: 'frontend' | 'backend' | 'devops' | 'tools';
+  description: string;
+  skills: SkillItem[];
+}
 
-  // Backend
-  { name: 'Node.js', category: 'backend', level: 'advanced' },
-  { name: 'Express', category: 'backend', level: 'advanced' },
-  { name: 'NestJS', category: 'backend', level: 'intermediate' },
-  { name: 'REST APIs', category: 'backend', level: 'expert' },
-  { name: 'GraphQL', category: 'backend', level: 'intermediate' },
-  { name: 'Python', category: 'backend', level: 'intermediate' },
-
-  // DevOps
-  { name: 'Docker', category: 'devops', level: 'advanced' },
-  { name: 'Kubernetes', category: 'devops', level: 'intermediate' },
-  { name: 'CI/CD (GitHub Actions, GitLab CI)', category: 'devops', level: 'advanced' },
-  { name: 'AWS', category: 'devops', level: 'intermediate' },
-  { name: 'Vercel / Netlify', category: 'devops', level: 'advanced' },
-
-  // Tools
-  { name: 'Git', category: 'tools', level: 'expert' },
-  { name: 'ESLint / Prettier', category: 'tools', level: 'advanced' },
-  { name: 'Jest / Vitest', category: 'tools', level: 'advanced' },
-  { name: 'Playwright / Cypress', category: 'tools', level: 'intermediate' },
-  { name: 'Storybook', category: 'tools', level: 'intermediate' },
-
-  // Languages
-  { name: 'TypeScript', category: 'languages', level: 'expert' },
-  { name: 'JavaScript', category: 'languages', level: 'expert' },
-  { name: 'Python', category: 'languages', level: 'intermediate' },
-  { name: 'Go', category: 'languages', level: 'beginner' },
-
-  // Databases
-  { name: 'PostgreSQL', category: 'databases', level: 'advanced' },
-  { name: 'MongoDB', category: 'databases', level: 'intermediate' },
-  { name: 'Redis', category: 'databases', level: 'intermediate' },
-  { name: 'Prisma / TypeORM', category: 'databases', level: 'advanced' },
+export const skillCategories: SkillCategory[] = [
+  {
+    key: 'frontend',
+    title: 'Frontend',
+    icon: 'frontend',
+    description:
+      'Arquitectura de componentes, SSR/CSR y design systems escalables orientados a rendimiento y accesibilidad.',
+    skills: [
+      { name: 'React', level: 'expert' },
+      { name: 'TypeScript', level: 'expert' },
+      { name: 'Next.js', level: 'advanced' },
+      { name: 'Tailwind CSS', level: 'advanced' },
+      { name: 'HTML5/CSS3', level: 'expert' },
+      { name: 'JavaScript (ES6+)', level: 'expert' },
+      { name: 'Vite', level: 'advanced' },
+      { name: 'Zustand/Redux', level: 'advanced' },
+    ],
+  },
+  {
+    key: 'backend',
+    title: 'Backend',
+    icon: 'backend',
+    description:
+      'APIs robustas, modelado de datos y servicios de alto rendimiento con foco en escalabilidad y seguridad.',
+    skills: [
+      { name: 'Node.js', level: 'advanced' },
+      { name: 'Express', level: 'advanced' },
+      { name: 'REST APIs', level: 'expert' },
+      { name: 'Python', level: 'intermediate' },
+      { name: 'PostgreSQL / MongoDB', level: 'advanced' },
+    ],
+  },
+  {
+    key: 'devops',
+    title: 'DevOps & Cloud',
+    icon: 'devops',
+    description:
+      'Infraestructura como código, despliegues continuos y observabilidad para entornos cloud-native.',
+    skills: [
+      { name: 'Docker', level: 'advanced' },
+      { name: 'CI/CD (GitHub Actions)', level: 'advanced' },
+      { name: 'AWS (S3, EC2, Lambda)', level: 'intermediate' },
+      { name: 'Vercel / Netlify', level: 'advanced' },
+    ],
+  },
+  {
+    key: 'tools',
+    title: 'Tools & Testing',
+    icon: 'tools',
+    description:
+      'Calidad asegurada con testing automatizado, flujo de diseño y tooling de productividad.',
+    skills: [
+      { name: 'Git & GitHub', level: 'expert' },
+      { name: 'Jest / Vitest', level: 'advanced' },
+      { name: 'Postman / Bruno', level: 'intermediate' },
+      { name: 'Figma (Design Tokens)', level: 'intermediate' },
+    ],
+  },
 ];
 
-export const skillCategories = [
-  { key: 'frontend', label: 'Frontend', color: 'blue' },
-  { key: 'backend', label: 'Backend', color: 'green' },
-  { key: 'devops', label: 'DevOps', color: 'purple' },
-  { key: 'tools', label: 'Herramientas', color: 'orange' },
-  { key: 'languages', label: 'Lenguajes', color: 'pink' },
-  { key: 'databases', label: 'Bases de Datos', color: 'indigo' },
+export const skillLevels = [
+  { key: 'expert', label: 'Experto', color: 'indigo' },
+  { key: 'advanced', label: 'Avanzado', color: 'blue' },
+  { key: 'intermediate', label: 'Intermedio', color: 'gray' },
 ] as const;
