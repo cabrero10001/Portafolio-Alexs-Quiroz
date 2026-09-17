@@ -60,7 +60,7 @@ export function Hero() {
             <div className="relative rounded-[2rem] border border-indigo-500/40 bg-gradient-to-br from-indigo-500/20 to-purple-600/20 p-1.5 shadow-[0_0_40px_-12px] shadow-indigo-500/50">
               <div className="rounded-[1.75rem] overflow-hidden aspect-[4/5] bg-gray-100 dark:bg-gray-800">
                 <img
-                  src="src\assets\images\fotoPortafolio.jpg"
+                  src="/profile/fotoPortafolio.jpg"
                   alt="Alexs trabajando con una laptop"
                   className="w-full h-full object-cover"
                   loading="eager"
